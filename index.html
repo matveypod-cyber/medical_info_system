@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Информационная система медицинского учреждения">
+    <title>МедИС — медицинская информационная система</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="loginScreen" class="auth-screen">
+    <form id="loginForm" class="auth-card">
+        <div class="auth-logo">✚</div>
+
+        <h1>МедИС</h1>
+        <p class="auth-description">
+            Медицинская информационная система
+        </p>
+
+        <h2>Вход в систему</h2>
+
+        <div class="form-field">
+            <label for="loginEmail">Электронная почта</label>
+            <input
+                id="loginEmail"
+                type="email"
+                autocomplete="username"
+                placeholder="Введите электронную почту"
+                required
+            >
+        </div>
+
+        <div class="form-field">
+            <label for="loginPassword">Пароль</label>
+            <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Введите пароль"
+                required
+            >
+        </div>
+
+        <p id="loginError" class="login-error" hidden></p>
+
+        <button id="loginButton" type="submit" class="primary-button">
+            Войти
+        </button>
+
+        <p class="auth-footer">
+            Доступ только для зарегистрированных пользователей
+        </p>
+    </form>
+</section>
+
+    <div class="app" id="appRoot" hidden>
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">✚</div>
+                <div>
+                    <strong>Медицинская</strong>
+                    <span>информационная система</span>
+                </div>
+            </div>
+
+            
+<nav class="navigation">
+    <button class="nav-item active" data-page="Главная">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m3 10 9-7 9 7"/>
+                <path d="M5 9v12h14V9"/>
+                <path d="M9 21v-7h6v7"/>
+            </svg>
+        </span>
+        <span>Главная</span>
+    </button>
+
+    <button class="nav-item" data-page="Пациенты">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21a8 8 0 0 1 16 0"/>
+            </svg>
+        </span>
+        <span>Пациенты</span>
+    </button>
+
+    <button class="nav-item" data-page="Сотрудники">
+    <span class="nav-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="10" cy="7" r="4"/>
+            <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+    </span>
+    <span>Сотрудники</span>
+</button>
+
+    <button class="nav-item" data-page="Подразделения">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="3" width="16" height="18" rx="2"/>
+                <path d="M9 7h2M9 11h2M9 15h2"/>
+                <path d="M15 7h.01M15 11h.01M15 15h.01"/>
+                <path d="M10 21v-3h4v3"/>
+            </svg>
+        </span>
+        <span>Подразделения</span>
+    </button>
+
+    <button class="nav-item" data-page="Услуги">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14M5 12h14"/>
+            </svg>
+        </span>
+        <span>Услуги</span>
+    </button>
+
+    <button class="nav-item" data-page="Обращения">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2"/>
+                <path d="M8 3v4M16 3v4M3 10h18"/>
+                <path d="m9 15 2 2 4-4"/>
+            </svg>
+        </span>
+        <span>Обращения</span>
+    </button>
+
+    <button class="nav-item" data-page="Отчёты">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19V5M4 19h17"/>
+                <path d="m7 15 4-4 3 2 5-6"/>
+            </svg>
+        </span>
+        <span>Отчёты</span>
+    </button>
+
+    <button class="nav-item" data-page="Склад">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m3 9 9-6 9 6"/>
+                <path d="M5 9v12h14V9"/>
+                <path d="M9 21v-6h6v6"/>
+                <path d="M8 11h.01M16 11h.01"/>
+            </svg>
+        </span>
+        <span>Склад</span>
+    </button>
+</nav>
+
+
+            <<div class="sidebar-bottom">
+    <button class="nav-item" data-page="Настройки">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-2 .9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-2-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 2-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 2 .9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -2) scale(1.08)"/>
+            </svg>
+        </span>
+        <span>Настройки</span>
+    </button>
+
+    <button class="nav-item" id="logoutButton">
+        <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 17l5-5-5-5"/>
+                <path d="M15 12H3"/>
+                <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/>
+            </svg>
+        </span>
+        <span>Выйти</span>
+    </button>
+</div>
+        </aside>
+
+        <div class="workspace">
+            <header class="topbar">
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input id="globalSearch" type="search"
+                        placeholder="Поиск по ФИО, телефону, записи...">
+                </label>
+
+                <div class="user-panel">
+                    <div class="user-avatar">А</div>
+                    <div>
+                        <strong id="userName">Администратор</strong>
+                        <span>Демонстрационный режим</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <section class="page-heading">
+                    <div>
+                        <h1 id="pageTitle">Добро пожаловать!</h1>
+                        <p id="pageDescription">
+                            Система учёта и анализа деятельности медицинского учреждения
+                        </p>
+                    </div>
+                    <div class="today">
+                        <span>Текущая дата</span>
+                        <strong id="currentDate">—</strong>
+                    </div>
+                </section>
+
+                <div id="notice" class="notice" role="status" hidden></div>
+
+                <section id="dashboardPage">
+                    <div class="dashboard-layout">
+                        <div class="main-column">
+                            <section class="stats-grid">
+                                <article class="stat-card blue">
+                                    <div class="stat-icon">♙</div>
+                                    <div>
+                                        <span>Пациенты</span>
+                                        <strong id="patientCount">0</strong>
+                                        <small>Всего в системе</small>
+                                    </div>
+                                </article>
+                                <article class="stat-card green">
+                                    <div class="stat-icon">♟</div>
+                                    <div>
+                                        <span>Сотрудники</span>
+                                        <strong id="employeeCount">0</strong>
+                                        <small>В справочнике</small>
+                                    </div>
+                                </article>
+                                <article class="stat-card purple">
+                                    <div class="stat-icon">✚</div>
+                                    <div>
+                                        <span>Медицинские услуги</span>
+                                        <strong id="serviceCount">0</strong>
+                                        <small>Доступно в системе</small>
+                                    </div>
+                                </article>
+                                <article class="stat-card orange">
+                                    <div class="stat-icon">▣</div>
+                                    <div>
+                                        <span>Обращения</span>
+                                        <strong id="visitCount">0</strong>
+                                        <small>Зарегистрировано</small>
+                                    </div>
+                                </article>
+                            </section>
+
+                            <section class="panel">
+                                <div class="panel-heading">
+                                    <div>
+                                        <h2>Последние обращения</h2>
+                                        <p>Недавно зарегистрированные записи</p>
+                                    </div>
+                                    <button class="text-button" data-open-page="Обращения">
+                                        Все обращения →
+                                    </button>
+                                </div>
+                                <div class="table-wrap">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Пациент</th>
+                                                <th>Сотрудник</th>
+                                                <th>Дата</th>
+                                                <th>Статус</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentVisits"></tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="panel">
+                                <div class="panel-heading">
+                                    <div>
+                                        <h2>Последние пациенты</h2>
+                                        <p>Сведения из демонстрационного справочника</p>
+                                    </div>
+                                    <button class="text-button" data-open-page="Пациенты">
+                                        Все пациенты →
+                                    </button>
+                                </div>
+                                <div class="table-wrap">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ФИО</th>
+                                                <th>Дата рождения</th>
+                                                <th>Телефон</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentPatients"></tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+
+                        <aside class="right-column">
+                            <section class="panel">
+                                <div class="panel-heading">
+                                    <div>
+                                        <h2>Быстрые действия</h2>
+                                        <p>Переход к основным операциям</p>
+                                    </div>
+                                </div>
+                                <div class="quick-actions">
+                                    <button class="action-button blue" data-action="patient">
+                                        <span>＋</span> Добавить пациента
+                                    </button>
+                                    <button class="action-button green" data-action="employee">
+                                        <span>♙</span> Добавить сотрудника
+                                    </button>
+                                    <button class="action-button purple" data-action="service">
+                                        <span>✚</span> Добавить услугу
+                                    </button>
+                                    <button class="action-button orange" data-action="visit">
+                                        <span>▣</span> Создать обращение
+                                    </button>
+                                </div>
+                            </section>
+
+                            <section class="panel">
+                                <div class="panel-heading">
+                                    <div>
+                                        <h2>Состояние системы</h2>
+                                        <p>Текущий режим работы</p>
+                                    </div>
+                                </div>
+                                <div class="system-status">
+                                    <span class="status-dot"></span>
+                                    <div>
+                                        <strong>Интерфейс работает</strong>
+                                        <p>Используются тестовые данные</p>
+                                    </div>
+                                </div>
+                                <div class="info-note">
+    Система использует Firebase Authentication для авторизации
+    и Cloud Firestore для хранения данных.
+    Проект предназначен для учебных целей.
+    Используйте только вымышленные данные пациентов.
+</div>
+                            </section>
+                        </aside>
+                    </div>
+                </section>
+
+                <section id="modulePage" hidden>
+                    <div class="panel">
+                        <div class="panel-heading module-heading">
+                            <div>
+                                <h2 id="moduleTitle">Раздел системы</h2>
+                                <p id="moduleDescription"></p>
+                            </div>
+                            <button id="addRecordButton" class="primary-button">
+                                ＋ Добавить запись
+                            </button>
+                        </div>
+                        <div id="moduleContent"></div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <span>МедИС · Учебный проект</span>
+                <span>Версия 1.0 · Демонстрационный режим</span>
+            </footer>
+        </div>
+    </div>
+
+    <dialog id="recordDialog" class="record-dialog">
+        <form id="recordForm">
+            <div class="dialog-heading">
+                <h2 id="dialogTitle">Добавить запись</h2>
+                <button type="button" id="closeDialog" class="close-button"
+                    aria-label="Закрыть">×</button>
+            </div>
+            <div id="formFields" class="form-fields"></div>
+            <div class="dialog-actions">
+                <button type="button" id="cancelDialog" class="secondary-button">
+                    Отмена
+                </button>
+                <button type="submit" class="primary-button">Сохранить</button>
+            </div>
+        </form>
+    </dialog>
+
+
+<!-- Основная библиотека Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+
+<!-- Авторизация пользователей -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+<!-- База данных -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<!-- Настройки Firebase -->
+<script src="firebase-config.js"></script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Код приложения -->
+<script src="script.js"></script>
+
+</body>
+</html>
